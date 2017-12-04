@@ -1,0 +1,99 @@
+#+TITLE: Current and future challenges for mass spectrometry-based omics in R/Bioconductor
+
+Despite recent interest in R/Bioconductor for the analysis of MS-based
+proteomics (number of packages and downloads), there are still many
+aspects that are not covered in the R/Bioc ecosystem, and that
+probably won't. The following list illustrates a typical MS-based
+proteomics pipeline:
+
+- Raw data access
+- Raw data processing
+- Feature identification (peptide spectrum matchin)
+- Quantitation
+- Protein inference
+- Data processing: missing data imputation, normalisation, ...
+- Statistical analyses
+
+We have however identified some use-cases were Bioconductor, through
+its specific expertise and experience, could have a long-lasting
+impact on various aspects of mass spectrometry and proteomics and
+beyond. All these use-cases relied on a central linked data structure
+enabling to traverse all levels of a contemporary intergrative omics,
+and MS-based omics, assay. 
+
+** Use cases
+
+- Given a differentially expressed protein of interest observed in n
+  samples across k conditions, extract all it's PTMs, visualise them
+  on a heatmap or a boxplot (show example figures) and, upon a user
+  click, display the annotated spectra.
+
+- Given any differentially expressed feature (protein, peptides, PSM),
+  return the number of lower level features (peptides, PSMs) and the
+  underlying raw data used for quantitation/identification, including
+  relevant MS1, MS2, MS3 and extracted chromatograms.
+
+- Given a pair of RNA-Seq and proteins assays on the same sample,
+  visualise all data along common genomic corrdinates (show example
+  figure).
+
+- Given a feature displaying a PTM, return the raw spectrum,
+  highlighting the fragment ion that discriminates the modification.
+
+- Given a set of RT-aligned MS acquisitions and a protein of interest
+  (differentially expressed, or displaying a presence/absence pattern
+  among exprimental groups), return/visualise the underlying raw
+  features in the MS space (RT vs M/Z) and delta RT.
+
+
+** What is available?
+
+Some existing packages provide some of the above:
+
+- Pbase
+- MSnbase
+- xcms
+
+What is missing?
+
+** Linked data structure
+
+The linked data structure should provide explicit mechanism linking
+the followind data layers
+
+- Genome, gene
+- Protein groups
+- Proteins, isoforms
+- Peptides
+- PSMs
+- Spectra
+- Features: MS1, MS2, ..., (extracted ion) chromatograms
+- PTMs (including position, score)
+- Fragments (including discriminating PTMs)
+
+As well as
+
+- Integration with various annotations (protein domains, GO, pathways,
+  ....)
+- Keep in mind compatibility with MultiAssaySet
+
+** Example queries
+
+- Bottom-up vs. top-down
+- All proteins/peptides that have a given modification 
+- All proteins/peptides that have a given immonium ion
+- All protein/peptides that match a sequence patterm
+- 
+
+** Conclusion
+
+A data structure that 
+
+- fits both users' and developers' needs
+- allows to navigate (graphically and programmatically) across all
+  levels above
+- allows to do inference across all levels described above
+- all features with a p-value < x
+- extract any MS data space (RT vs M/Z, XIC)
+
+
